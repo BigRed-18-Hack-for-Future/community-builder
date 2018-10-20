@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Add Listing</title>
+</head>
+
+<body>
+  <button id="info"> display current user info </button>
+  <div id="infoHolder"></div>
+
+  <button id="logbtn">Log In</button>
+  <br/>
+  <button id="logout">Log Out</button>
+  <form>
+    <div>
+      <label for="title">title</label>
+      <input type="text" id="title" />
+    </div>
+
+    <div>
+      <label for="imgupload"> image </label>
+      <input type="file" id="imgupload" name="imginput" accept="image/*"/>
+    </div>
+    <div>
+      <label for="desc">description</label>
+      <input type="text" id="desc" />
+    </div>
+
+    <div>
+      <label for="lat">latitude</label>
+      <input type="text" id="lat" />
+    </div>
+
+    <div>
+      <label for="long">longitude</label>
+      <input type="text" id="long" />
+    </div>
+
+    <input type="checkbox" value="Construction" id="const"/> Construction <br/>
+    <input type="checkbox" value="Coordination" id="coord"/> Coordination <br/>
+    <input type="checkbox" value="Other" id="other"/> Other <br/>
+
+    <br/>
+  </form>
+
+  <button id="subform"> submit </button>
+<button id="uploadimage">image </button>
+  <!-- Firebase stuff -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB5ybtd-8ugyIJFVUWdvBNgLRcDfQ1URIs",
+      authDomain: "communitybuilder-2f0f5.firebaseapp.com",
+      databaseURL: "https://communitybuilder-2f0f5.firebaseio.com",
+      projectId: "communitybuilder-2f0f5",
+      storageBucket: "communitybuilder-2f0f5.appspot.com",
+      messagingSenderId: "1040687708886"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript" src="scripts/newlisting.js"></script>
+</body>
+
+</html>
