@@ -78,3 +78,31 @@ function map_closeWindows () {
   }
 }
 
+/**************************** Form Page Second Map ****************************/
+
+var map_loc;
+
+function map_initMapLoc () {
+  map_loc = new google.maps.Map(document.getElementById('loc-map-container'), {
+    center: {
+      lat: map_centerLat,
+      lng: map_centerLng
+    },
+    zoom: map_initZoom
+  });
+
+  var drawingManager = new google.maps.drawing.DrawingManager({
+    drawingMode: google.maps.drawing.OverlayType.MARKER,
+    drawingControl: true,
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: ['marker']
+    },
+  });
+
+  google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+    var marker_position = marker.getPosition();
+    /* form handler TODO */
+  });
+  drawingManager.setMap(map_loc);
+}
