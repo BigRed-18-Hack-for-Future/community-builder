@@ -1,7 +1,13 @@
 window.onload = function(){
     let url = window.location.href
     console.log(url)
-    console.log(getParameterByName('id', url))
+    var id = getParameterByName('id', url)
+    console.log(id)
+    if(id){
+      displayPage(id)
+    }else{
+      displayError()
+    }
 }
 
 function getParameterByName(name, url) {
@@ -12,4 +18,16 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function displayPage(id){
+  firebase.database().ref(`/posts/${id}`).on('value', function(snapshot) {
+    data = snapshot.val()
+    console.log(data)
+    
+  })
+}
+
+function displayError(){
+  console.log("error!")
 }

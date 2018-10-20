@@ -120,6 +120,7 @@ submit.addEventListener("click", e => {
     var pathRef = newPostKey
     console.log(file)
     var uploadTask = storageRef.child(pathRef).put(file)
+    window.location.href = `project.html?id=${newPostKey}`
   }
 
 })

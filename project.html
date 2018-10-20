@@ -4,48 +4,50 @@
 <head>
   <meta charset="utf-8" />
   <title>Add Listing</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
-  <button id="info"> display current user info </button>
-  <div id="infoHolder"></div>
+  <!-- <button id="check"> help </button> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Community Map</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <button id="logbtn">Log In</button>
-  <br/>
-  <button id="logout">Log Out</button>
-  <form>
-    <div>
-      <label for="title">title</label>
-      <input type="text" id="title" />
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Current Projects <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Successful Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">New Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Something Else</a>
+        </li>
+      </ul>
+      <div id="usrinfo">
+        <a class="navbar-text pr-2" href="#" id="current">Current User</a>
+        <button id="logbtn" class="btn btn-info">Log In</button>
+        <button id="logout" class="btn btn-info">Log Out</button>
+      </div>
     </div>
+  </nav>
 
-    <div>
-      <label for="imgupload"> image </label>
-      <input type="file" id="imgupload" accept="image/*"/>
-    </div>
-    <div>
-      <label for="desc">description</label>
-      <input type="text" id="desc" />
-    </div>
+  <!-- <button id="logbtn" class="btn btn-info">Log In</button> -->
 
-    <div>
-      <label for="lat">latitude</label>
-      <input type="text" id="lat" />
-    </div>
+  <div class="jumbotron">
+    <h1 class="display-4" id="title">Hello, world!</h1>
+    <p class="lead" id="desc">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Contact</a>
+  </div>
 
-    <div>
-      <label for="long">longitude</label>
-      <input type="text" id="long" />
-    </div>
-
-    <input type="checkbox" value="Construction" id="const"/> Construction <br/>
-    <input type="checkbox" value="Coordination" id="coord"/> Coordination <br/>
-    <input type="checkbox" value="Other" id="other"/> Other <br/>
-
-    <br/>
-  </form>
-
-  <button id="subform"> submit </button>
 
   <!-- Firebase stuff -->
   <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
