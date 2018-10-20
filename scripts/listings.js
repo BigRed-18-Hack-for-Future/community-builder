@@ -69,27 +69,26 @@ function loggedIn() {
 function loadCards() {
   let num = 1;
   firebase.database().ref("/posts").on('value', function(snapshot) {
-    data = snapshot.val();
+    data = snapshot.val()
     for (key in data) {
       console.log("brandon", data[key])
-      let column = document.createElement("div");
-      column.classList.add("col");
-      let card = document.createElement("div");
-      card.id = "card" + num;
-      card.classList.add("card");
+      let column = document.createElement("div")
+      column.classList.add("col")
+      let card = document.createElement("div")
+      card.id = "card" + num
+      card.classList.add("card")
       card.style = "width: 18rem; margin-top:40px;" //move to CSS style
-      let img = document.createElement("img");
-      img.id = "card"+num+"_img";
-      img.classList.add("card-img-top");
-      img.style = "height:286px; width:286px";
-      img.alt = "brandon was here";
+      let img = document.createElement("img")
+      img.id = "card"+num+"_img"
+      img.classList.add("card-img-top")
+      img.alt = "image broken"
       firebase.storage().ref(key).getDownloadURL().then(function(url) {
-      img.src = url;
+      img.src = url
     }).catch(function(error) {
       // Handle any errors
       img.src = "assets/communitygarden.jpg";
     })
-      
+
       let body = document.createElement("div");
       body.id="card"+num+"_body";
       body.classList.add("card-body");
@@ -110,7 +109,7 @@ function loadCards() {
       body.appendChild(text);
       let btn = document.createElement("a");
       btn.id="card"+num+"_btn";
-      btn.href="#"
+      btn.href=`project.html?id=${key}`
       btn.classList.add("btn");
       btn.classList.add("btn-primary");
       btn.innerHTML = "More Info";
