@@ -1,6 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from './components/app'
+import App from './components/App'
+
+import Main from './components/views/Main'
+import CreateProject from './components/views/CreateProject'
+import UserInfo from './components/views/UserInfo'
 
 export default (
   <Route path='/' component={ App }>
