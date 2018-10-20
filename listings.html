@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Firebase stuff -->
+  <title>Listings View</title>
+</head>
+
+<body>
+  <div>
+    <button id="info"> display current user info </button>
+    <div id="infoHolder"></div>
+
+    <button id="logbtn">Log In</button>
+    <br/>
+    <button id="logout">Log Out</button>
+
+    <div id="holder">
+    </div>
+  </div>
+
+  <div id = "cardListings" class="row" style="margin-left: 50px; margin-right: 50px;">
+    <div class="col">
+      <div id="card1" class="card" style="width: 18rem; margin-top:40px;">
+        <img id="card1_img" class="card-img-top" src="assets/communitygarden.jpg" alt="brandon was here">
+        <div id="card1_body" class="card-body">
+          <h5 id="card1_title" class="card-title">Card title</h5>
+          <h6 id="card1_sub" class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p id="card1_text" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a id="card1_btn" href="#" class="btn btn-primary">More info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB5ybtd-8ugyIJFVUWdvBNgLRcDfQ1URIs",
+      authDomain: "communitybuilder-2f0f5.firebaseapp.com",
+      databaseURL: "https://communitybuilder-2f0f5.firebaseio.com",
+      projectId: "communitybuilder-2f0f5",
+      storageBucket: "communitybuilder-2f0f5.appspot.com",
+      messagingSenderId: "1040687708886"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript" src="scripts/listings.js"></script>
+  
+</body>
+
+</html>
