@@ -101,7 +101,7 @@ function loadCards() {
       let subtitle = document.createElement("h6");
       subtitle.id="card"+num+"_sub";
       subtitle.class = ("card-subtitle mb-2 text-muted");
-      subtitle.innerHTML = data[key].title; //tags
+      subtitle.innerHTML = "tags";
       body.appendChild(subtitle);
       let text = document.createElement("p");
       text.id="card"+num+"_text";
