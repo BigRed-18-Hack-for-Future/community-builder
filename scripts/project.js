@@ -24,7 +24,17 @@ function displayPage(id){
   firebase.database().ref(`/posts/${id}`).on('value', function(snapshot) {
     data = snapshot.val()
     console.log(data)
-    
+    document.querySelector("#title").innerHTML = data.title
+    document.querySelector("#desc").innerHTML = data.desc
+  })
+  firebase.storage().ref(id).getDownloadURL().then(function(url) {
+    // Or inserted into an <img> element:
+    var img = document.getElementById('cardimg')
+    img.src = url
+  }).catch(function(error) {
+    // Handle any errors
+    var img = document.getElementById('cardimg')
+    img.src = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg"
   })
 }
 
