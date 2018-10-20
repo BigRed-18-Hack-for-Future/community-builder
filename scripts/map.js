@@ -41,7 +41,6 @@ function map_initMapMain () {
     },
     zoom: map_initZoom
   });
-  console.log (map_main)
   /* show markers */
   var pins = []
   for (key in map_markers) {
@@ -67,7 +66,6 @@ function map_initMapMain () {
       }})(pin, markerData, infoWindow))
   }
   var markerCluster = new MarkerClusterer (map_main, pins)
-  console.log (pins)
 }
 
 function map_closeWindows () {
