@@ -8,17 +8,34 @@
 </head>
 
 <body>
-  <div>
-    <button id="info"> display current user info </button>
-    <div id="infoHolder"></div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Community Map</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <button id="logbtn">Log In</button>
-    <br/>
-    <button id="logout">Log Out</button>
-
-    <div id="holder">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Current Projects <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Successful Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">New Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Something Else</a>
+        </li>
+      </ul>
+      <div id="usrinfo">
+        <a class="navbar-text pr-2" href="#" id="current">Current User</a>
+        <button id="logbtn" class="btn btn-info">Log In</button>
+        <button id="logout" class="btn btn-info">Log Out</button>
+      </div>
     </div>
-  </div>
+  </nav>
 
   <div id = "cardListings" class="row" style="margin-left: 50px; margin-right: 50px;">
     <div class="col">

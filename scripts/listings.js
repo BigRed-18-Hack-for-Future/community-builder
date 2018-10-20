@@ -4,9 +4,11 @@ function getUserID() {
   return firebase.auth().currentUser.uid;
 }
 
+
 let login = document.querySelector("#logbtn");
 
 login.addEventListener("click", e => {
+  console.log("clicked log in", firebase.auth().currentUser.uid, firebase.auth().currentUser.email)
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -26,6 +28,10 @@ login.addEventListener("click", e => {
   });
 })
 
+function whoIsLoggedIn () {
+  console.log("logged in", firebase.auth().currentUser.uid, firebase.auth().currentUser.email);
+}
+
 let logout = document.querySelector("#logout")
 logout.addEventListener("click", e => {
   firebase.auth().signOut().then(function() {
@@ -36,6 +42,14 @@ logout.addEventListener("click", e => {
     // An error happened.
   });
 })
+
+/*
+let disp = document.querySelector("#info")
+let info = document.querySelector("#infoHolder")
+disp.addEventListener("click", e => {
+  console.log(loggedIn())
+})
+*/
 
 
 //returned true if someone is logged in
@@ -67,7 +81,7 @@ function loadCards() {
       let img = document.createElement("img");
       img.id = "card"+num+"_img";
       img.classList.add("card-img-top");
-      img.style = "height:215.5px; width:286px";
+      img.style = "height:286px; width:286px";
       img.alt = "brandon was here";
       firebase.storage().ref(key).getDownloadURL().then(function(url) {
       img.src = url;
@@ -110,11 +124,5 @@ function loadCards() {
     }
   })
 }
-
-let disp = document.querySelector("#info")
-let info = document.querySelector("#infoHolder")
-disp.addEventListener("click", e => {
-  console.log(loggedIn())
-})
 
 loadCards();

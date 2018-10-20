@@ -4,7 +4,15 @@
 //   console.log(firebase.auth().currentUser)
 // })
 
+window.onload = function () {
+  loggedIn();
+}
+
 //returned true if someone is logged in
+function whoIsLoggedIn () {
+  console.log("logged in", firebase.auth().currentUser.uid, firebase.auth().currentUser.email);
+}
+
 function loggedIn() {
   var user = firebase.auth().currentUser
 
