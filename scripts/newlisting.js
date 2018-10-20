@@ -1,3 +1,46 @@
+// var help = document.querySelector("#check")
+// help.addEventListener('click', e => {
+//   loggedIn()
+//   console.log(firebase.auth().currentUser)
+// })
+
+//returned true if someone is logged in
+function loggedIn() {
+  var user = firebase.auth().currentUser
+
+  var usrinfo = document.querySelector("#usrinfo")
+  var logbtn = document.querySelector("#logbtn")
+  var logout = document.querySelector("#logout")
+  var current = document.querySelector("#current")
+
+  console.log("called loggedIn")
+  if (user) {
+    console.log("user is true")
+    logbtn.style.display = 'none'
+    logout.style.display = 'initial'
+    current.style.display = 'initial'
+    current.innerHTML = user.displayName
+    return user.uid;
+  } else {
+    console.log("user is false")
+    console.log(logout)
+    console.log(current)
+    logout.style.display = 'none'
+    current.style.display = 'none'
+    logbtn.style.display = 'initial'
+    return "";
+  }
+}
+
+loggedIn()
+
+// //if logged in show log out button
+// if(loggedIn()){
+//   console.log(currentUser)
+// } else{
+//   console.log("no one")
+// }
+
 function getUserID() {
   console.log("user")
   console.log(firebase.auth().currentUser)
@@ -5,7 +48,6 @@ function getUserID() {
 }
 
 let login = document.querySelector("#logbtn")
-
 login.addEventListener("click", e => {
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -14,7 +56,7 @@ login.addEventListener("click", e => {
     // The signed-in user info.
     var user = result.user;
     // ...
-  }).catch(function(error) {
+  }).then(function(){ loggedIn()}).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -35,28 +77,6 @@ logout.addEventListener("click", e => {
     console.log(error)
     // An error happened.
   });
-})
-
-
-//returned true if someone is logged in
-function loggedIn() {
-  var user = firebase.auth().currentUser;
-  if (user) {
-    console.log(user)
-    info.innerHTML = `${user.email} is logged in`
-    info.innerHTML += `${user.uid} is logged in`
-    return user.uid;
-  } else {
-    info.innerHTML = "no current user"
-    return "";
-  }
-}
-
-
-let disp = document.querySelector("#info")
-let info = document.querySelector("#infoHolder")
-disp.addEventListener("click", e => {
-  console.log(loggedIn())
 })
 
 
@@ -81,7 +101,8 @@ submit.addEventListener("click", e => {
       long: long,
       con: con,
       coord: coord,
-      other: other
+      other: other,
+      done: false
     }
     console.log(info)
 
