@@ -4,9 +4,10 @@
 //   console.log(firebase.auth().currentUser)
 // })
 
-window.onload = function () {
+window.setTimeout (function () {
+  console.log("WINDOW ON LOAD")
   loggedIn();
-}
+}, 1000);
 
 //returned true if someone is logged in
 function whoIsLoggedIn () {
