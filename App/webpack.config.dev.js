@@ -10,7 +10,7 @@ module.exports = {
     publicPath: '/public/'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js|.jsx?$/,
         exclude: /(node_modules)/,
@@ -19,18 +19,11 @@ module.exports = {
           presets: ['react', 'es2015']
         }
       },
-      {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader?sourceMap'
-      }
     ]
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   devServer: {
     historyApiFallback: true,
     contentBase: './'
