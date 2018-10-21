@@ -22,7 +22,11 @@ function getParameterByName(name, url) {
 }
 
 function displayPage(id) {
-  dispOther(id)
+  if(id == uid){
+    dispSelf(id)
+  }else{
+    dispOther(id)
+  }
 }
 
 
@@ -30,7 +34,13 @@ function displayPage(id) {
 function dispSelf(id) {
   title = document.querySelector("title")
   title.innerHTML = 'My Profile'
-
+  firebase.database().ref(`/user-info/${id}`).on('value', function(snapshot) {
+    data = snapshot.val()
+    console.log(data)
+    document.querySelector("#name").innerHTML = data.name
+    document.querySelector("#email").innerHTML = data.email
+    document.querySelector("#pic").setAttribute('src', data.photo)
+  })
 }
 
 function dispOther(id) {

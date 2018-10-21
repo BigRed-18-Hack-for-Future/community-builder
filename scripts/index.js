@@ -16,6 +16,13 @@ function getMapData(){
         url: `project.html?id=${key}`
       }
     }
-  })
+  }).then(function(e) {})
+  console.log(dispInfo, "this is the info")
+  console.log("this prints")
+  for(keys in dispInfo){
+    console.log(key)
+    console.log("hello")
+  }
+  console.log("this also")
   return dispInfo
 }

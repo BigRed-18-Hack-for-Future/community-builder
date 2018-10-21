@@ -19,6 +19,7 @@ var map_markers
 
 function map_initMapMain () {
   map_markers = getMapData ();
+  console.log(map_markers, "map data")
   map_main = new google.maps.Map (document.getElementById('main-map-container'), {
     center: {
       lat: map_centerLat,
@@ -29,6 +30,7 @@ function map_initMapMain () {
   /* show markers */
   var pins = []
   console.log (map_markers)
+  console.log(typeof map_markers)
   for (key in map_markers) {
     console.log ('traversing...');
     if (!map_markers.hasOwnProperty (key)) continue
@@ -116,4 +118,3 @@ function map_getNewPin () {
 function map_resetNewPin () {
   map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 }
-
