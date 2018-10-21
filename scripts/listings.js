@@ -33,12 +33,17 @@ function loadCards() {
       let subtitle = document.createElement("h6");
       subtitle.id="card"+num+"_sub";
       subtitle.class = ("card-subtitle mb-2 text-muted");
-      subtitle.innerHTML = "tags";
+      subtitle.innerHTML = data[key].tags;
       body.appendChild(subtitle);
       let text = document.createElement("p");
+      let short = data[key].desc
+      if (short.length > 60){
+        short = short.slice(0, 57);
+        short += "..."
+      }
       text.id="card"+num+"_text";
       text.classList.add("card-text");
-      text.innerHTML = data[key].desc;
+      text.innerHTML = short;
       body.appendChild(text);
       let btn = document.createElement("a");
       btn.id="card"+num+"_btn";
