@@ -9,9 +9,9 @@
 var map_main;
 var map_infoWindow;
 
-var map_centerLat = 18.4655
-var map_centerLng = -66.1057
-var map_initZoom = 12
+var map_centerLat = 18.4488
+var map_centerLng = -66.0945
+var map_initZoom = 13
 
 var map_windows = []
 var dispInfo
@@ -142,7 +142,7 @@ function map_resetNewPin () {
 
 function map_prepareProj () {
   var projID = (String (window.location))
-    .match (/\?id=-[A-Z|a-z|\_|0-9]+$/) [0]
+    .match (/\?id=-[A-Z|a-z|\_\-|0-9]+$/) [0]
     .substring (4)
   let dispInfo  = {}
   firebase.database().ref(`/posts/${projID}`).on('value', function(snapshot) {
