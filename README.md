@@ -29,3 +29,11 @@ Working to create a full-fledged web application in the short duration of a hack
 ## What's next for Bent Not Broken
 
 We think the idea and its framework are well established from user authentication to inputting projects and visualizing the available projects. Nevertheless, we hope to continue to make improvements to its functionality in details such as sending direct messages on our platform, sharing volunteer opportunities on social media, expanding the user network, and enhancing the application's visual appeal and user experience.
+
+### Roadmap
+
+- Extend tag system, match user skill sets with project needs.
+- Extend platform scale, enclose community unit, multiply usage across larger areas.
+- Improve authentication system, provide wider options, secure information hierarchy.
+- Package platform partial functionality into open-source libraries.
+- Experiment with communities in the real world!
