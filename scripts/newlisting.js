@@ -7,11 +7,9 @@ let submit = document.querySelector("#subform")
 console.log(submit)
 
 submit.addEventListener("click", e => {
-  if (auth) {
+  if (uid) {
     let title = document.querySelector("#title").value
     let desc = document.querySelector("#desc").value
-    let lat = document.querySelector("#lat").value
-    let long = document.querySelector("#long").value
     let con = document.querySelector("#const").checked
     let coord = document.querySelector("#coord").checked
     let other = document.querySelector("#other").checked
@@ -19,12 +17,13 @@ submit.addEventListener("click", e => {
     let info = {
       title: title,
       desc: desc,
-      lat: lat,
-      long: long,
+      lat: 10,
+      long: 10,
       con: con,
       coord: coord,
       other: other,
-      done: false
+      done: false,
+      creator: uid
     }
     console.log(info)
 
@@ -40,9 +39,10 @@ submit.addEventListener("click", e => {
     var file = document.querySelector("#imgupload").files[0]
     var storageRef = firebase.storage().ref()
     var pathRef = newPostKey
-    console.log(file)
-    var uploadTask = storageRef.child(pathRef).put(file)
-    window.location.href = `project.html?id=${newPostKey}`
+    var uploadTask = storageRef.child(pathRef).put(file).then(() => {
+      window.location.href = `project.html?id=${newPostKey}` })
+    console.log("successfully sent image file")
+    //window.location.href = `project.html?id=${newPostKey}`
   }
 
 })
