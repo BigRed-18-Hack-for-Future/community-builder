@@ -13,18 +13,22 @@ submit.addEventListener("click", e => {
     let con = document.querySelector("#const").checked
     let coord = document.querySelector("#coord").checked
     let other = document.querySelector("#other").checked
+    coords = map_getNewPin()
 
     let info = {
       title: title,
       desc: desc,
-      lat: 10,
-      long: 10,
+      lat: coords.lat,
+      long: coords.lng,
       con: con,
       coord: coord,
       other: other,
       done: false,
       creator: uid
     }
+
+
+        map_resetNewPin()
     console.log(info)
 
     // Get a key for a new Post.
