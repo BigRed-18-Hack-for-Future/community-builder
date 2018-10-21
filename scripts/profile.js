@@ -59,33 +59,96 @@ function displayError() {
   console.log("error!")
 }
 
-function loadCards(id) {
-  console.log(id)
-  firebase.database().ref(`/user-posts/${id}`).on('value', function(snapshot) {
+// function loadCards(id) {
+//   console.log(id)
+//   firebase.database().ref(`/user-posts/${id}`).on('value', function(snapshot) {
+//     data = snapshot.val()
+//     for (key in data) {
+//       let imgsrc = "assets/communitygarden.jpg"
+//       firebase.storage().ref(key).getDownloadURL().then(function(url) {
+//         console.log("do i get here")
+//         imgsrc = url
+//         console.log(url)
+//       }).catch(function(error) {
+//         // Handle any errors
+//         console.log("error")
+//         //imgsrc = "assets/communitygarden.jpg"
+//       }).then(() => {
+//
+//       })
+//       document.querySelector("#cardListings").innerHTML +=
+//         `<div class="card m-3 d-flex justify-content-around" style="width:300px">
+//         <img class="card-img-top" src="${imgsrc}" alt="Card image">
+//         <div class="card-body">
+//         <h4 class="card-title">${data[key].title}</h4>
+//         <p class="card-text">${data[key].desc}</p>
+//         <a href="project.html?id=${key}" class="btn btn-primary">More Info</a>
+//         </div>
+//         </div>`
+//     }
+//   })
+// }
+
+function loadCards() {
+  let num = 1;
+  firebase.database().ref("/posts").on('value', function(snapshot) {
     data = snapshot.val()
     for (key in data) {
-      let imgsrc = "assets/communitygarden.jpg"
-      console.log("what is the key", key)
-      firebase.storage().ref(key).getDownloadURL().then(function(url) {
-        console.log("do i get here")
-        imgsrc = url
-        console.log("if so, src is", imgsrc)
-        console.log(url)
+      if (!data[key].done) {
+        let column = document.createElement("div")
+        column.classList.add("col")
+        let card = document.createElement("div")
+        card.id = "card" + num
+        card.classList.add("card")
+        card.style = "width: 18rem; margin-top:40px;" //move to CSS style
+        let img = document.createElement("img")
+        img.id = "card"+num+"_img"
+        img.classList.add("card-img-top")
+        img.alt = "image broken"
+        firebase.storage().ref(key).getDownloadURL().then(function(url) {
+        img.src = url
       }).catch(function(error) {
         // Handle any errors
-        console.log("error")
-        //imgsrc = "assets/communitygarden.jpg"
-      }).then(() => {
-        document.querySelector("#cardListings").innerHTML +=
-          `<div class="card m-3 d-flex justify-content-around" style="width:300px">
-          <img class="card-img-top" src="${imgsrc}" alt="Card image">
-          <div class="card-body">
-          <h4 class="card-title">${data[key].title}</h4>
-          <p class="card-text">${data[key].desc}</p>
-          <a href="project.html?id=${key}" class="btn btn-primary">More Info</a>
-          </div>
-          </div>`
+        img.src = "assets/communitygarden.jpg";
       })
+
+      let body = document.createElement("div");
+      body.id="card"+num+"_body";
+      body.classList.add("card-body");
+      let title = document.createElement("h5");
+      title.id="card"+num+"_title";
+      title.classList.add("card-title");
+      title.innerHTML = data[key].title;
+      body.appendChild(title);
+      let subtitle = document.createElement("h6");
+      subtitle.id="card"+num+"_sub";
+      subtitle.class = ("card-subtitle mb-2 text-muted");
+      subtitle.innerHTML = data[key].tags;
+      body.appendChild(subtitle);
+      let text = document.createElement("p");
+      let short = data[key].desc
+      if (short.length > 60){
+        short = short.slice(0, 57);
+        short += "..."
+      }
+      text.id="card"+num+"_text";
+      text.classList.add("card-text");
+      text.innerHTML = short;
+      body.appendChild(text);
+      let btn = document.createElement("a");
+      btn.id="card"+num+"_btn";
+      btn.href=`project.html?id=${key}`
+      btn.classList.add("btn");
+      btn.classList.add("btn-primary");
+      btn.innerHTML = "More Info";
+      body.appendChild(btn);
+
+        card.appendChild(img);
+        card.appendChild(body);
+        column.appendChild(card);
+        document.getElementById("cardListings").appendChild(column);
+        num += 1;
+      }
     }
   })
 }
