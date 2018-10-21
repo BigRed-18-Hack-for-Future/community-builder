@@ -88,7 +88,7 @@ function map_closeWindows () {
 /**************************** Form Page Second Map ****************************/
 
 var map_loc;
-var map_markerpos;
+var map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 var map_marker;
 
 function map_initMapLoc () {
@@ -137,3 +137,23 @@ function map_getNewPin () {
 function map_resetNewPin () {
   map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 }
+
+/************************** Project Display Map *****************************/
+
+var map_showProject = null
+
+function map_setShowProject (data) { map_showProject = data }
+
+function map_initMapProj () {
+  console.log ('creating project map...')
+  var loc = {
+    lat: map_showProject.lat,
+    lng: map_showProject.lng
+  }
+  var map = new google.maps.Map (document.getElementById ('proj-map-container'), {
+    zoom: map_initZoom,
+    center: loc
+  })
+  var marker = new google.maps.Marker ({ position: loc, map: map })
+}
+

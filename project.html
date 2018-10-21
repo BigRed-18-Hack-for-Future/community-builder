@@ -49,9 +49,9 @@
 
 <div class="container">
   <div class="row pt-5">
-    <div class="col">
+    <div class="col-1">
     </div>
-    <div class="col-6">
+    <div class="col-5">
       <div class="card">
       <img class="card-img-top" src="#" alt="Card image cap" id="cardimg"/>
       <div class="card-body">
@@ -87,7 +87,12 @@
 
     </div>
     </div>
-    <div class="col">
+    <div class="col-1">
+    </div>
+
+    <!-- Project Location Map -->
+    <div class='col-4'>
+      <div id='proj-map-container'></div>
     </div>
   </div>
 </div>
@@ -106,6 +111,14 @@
       messagingSenderId: "1040687708886"
     };
     firebase.initializeApp(config);
+  </script>
+
+  <!-- Map stuff -->
+  <script src='scripts/map.js'></script>
+  <script
+    async
+    defer
+    src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBDWHVd0R-SnYJ7FNZ_q-tJFcqd8eSWIEk&callback=map_initMapProj'>
   </script>
 
   <script type="text/javascript" src="scripts/login.js"></script>
