@@ -46,9 +46,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-2">
+      <div class="col-1">
       </div>
-      <div>
+      <div class='col-4'>
 
         <form>
 
@@ -73,16 +73,6 @@
             <small id="deschelp" class="form-text text-muted">Be clear about what you need.</small>
           </div>
 
-          <div>
-            <label for="lat">latitude</label>
-            <input type="text" id="lat" />
-          </div>
-
-          <div>
-            <label for="long">longitude</label>
-            <input type="text" id="long" />
-          </div>
-
           <input type="checkbox" value="Construction" id="const" /> Construction <br/>
           <input type="checkbox" value="Coordination" id="coord" /> Coordination <br/>
           <input type="checkbox" value="Other" id="other" /> Other <br/>
@@ -92,9 +82,16 @@
 
         <button id="subform" class="btn btn-info"> Submit </button>
       </div>
-      <div class="col-2">
+      <div class="col-1">
+      </div>
+      <!-- Map to pick location -->
+      <div class='col-5' id='loc-map-container-container' style='height: 450px; width: 100%;'>
+        <label>Pin Project Location</label>
+        <div id='loc-map-container' style='height: 100%; margin-top: 2%;'></div>
       </div>
     </div>
+
+    <div style='height: 100px'></div>
   </div>
 
 
@@ -112,6 +109,14 @@
       messagingSenderId: "1040687708886"
     };
     firebase.initializeApp(config);
+  </script>
+
+  <!-- Map stuff -->
+  <script src='scripts/map.js'></script>
+  <script
+    async
+    defer
+    src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBDWHVd0R-SnYJ7FNZ_q-tJFcqd8eSWIEk&callback=map_initMapLoc&libraries=drawing'>
   </script>
 
   <script type="text/javascript" src="scripts/login.js"></script>
