@@ -142,7 +142,7 @@ function map_resetNewPin () {
 
 function map_prepareProj () {
   var projID = (String (window.location))
-    .match (/\?id=-[A-Z|a-z]+$/) [0]
+    .match (/\?id=-[A-Z|a-z|\_|0-9]+$/) [0]
     .substring (4)
   let dispInfo  = {}
   firebase.database().ref(`/posts/${projID}`).on('value', function(snapshot) {
