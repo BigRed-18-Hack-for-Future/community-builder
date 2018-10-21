@@ -1,7 +1,7 @@
 function getMapData(){
+  let dispInfo = {}
   firebase.database().ref('/posts').on('value', function(snapshot){
     data = snapshot.val()
-    let dispInfo = {}
     for(key in data){
       let short = data[key].desc
       if(short.length > 60){

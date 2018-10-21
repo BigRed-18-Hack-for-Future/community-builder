@@ -15,29 +15,10 @@ var map_initZoom = 16
 
 var map_windows = []
 
-
-var map_markers = {
-  "marker-1": {
-    lat: 42.4478,
-    lng: -76.4810,
-    title: "marker 1",
-    desc: "description1",
-  },
-  "marker-2": {
-    lat: 42.4493,
-    lng: -76.4821,
-    title: "marker 2",
-    desc: "description2",
-  },
-  "marker-3": {
-    lat: 42.4512,
-    lng: -76.4814,
-    title: "marker 3",
-    desc: "description3",
-  },
-}
+var map_markers
 
 function map_initMapMain () {
+  map_markers = getMapData ();
   map_main = new google.maps.Map (document.getElementById('main-map-container'), {
     center: {
       lat: map_centerLat,
@@ -47,7 +28,9 @@ function map_initMapMain () {
   });
   /* show markers */
   var pins = []
+  console.log (map_markers)
   for (key in map_markers) {
+    console.log ('traversing...');
     if (!map_markers.hasOwnProperty (key)) continue
     markerData = map_markers [key]
     var pin = new google.maps.Marker ({
@@ -64,7 +47,7 @@ function map_initMapMain () {
     google.maps.event.addListener (pin, 'click', (function (pin, data, infoWindow) {
       return function () {
         map_closeWindows ()
-        infoWindow.setContent ('<div style="padding-bottom: 10px ; font-size:140%">' 
+        infoWindow.setContent ('<div style="padding-bottom: 10px ; font-size:140%">'
                                + '<b>' + data.title + '</b>' + '</div>'  + '<div>' + data.desc + '</div>')
         infoWindow.open (map_main, pin)
         map_windows [0] = infoWindow
@@ -114,7 +97,7 @@ function map_initMapLoc () {
   });
 
   google.maps.event.addListener(drawingManager, 'dragend', function(event) {
-      
+
       map_markerpos = map_marker.getPosition();
   })
 
