@@ -15,21 +15,25 @@ var map_initZoom = 16
 
 var map_windows = []
 
+
 var map_markers = {
   "marker-1": {
     lat: 42.4478,
     lng: -76.4810,
     title: "marker 1",
+    desc: "description1",
   },
   "marker-2": {
     lat: 42.4493,
     lng: -76.4821,
     title: "marker 2",
+    desc: "description2",
   },
   "marker-3": {
     lat: 42.4512,
     lng: -76.4814,
     title: "marker 3",
+    desc: "description3",
   },
 }
 
@@ -79,6 +83,8 @@ function map_closeWindows () {
 /**************************** Form Page Second Map ****************************/
 
 var map_loc;
+var map_markerpos;
+var map_marker;
 
 function map_initMapLoc () {
   map_loc = new google.maps.Map(document.getElementById('loc-map-container'), {
@@ -96,11 +102,33 @@ function map_initMapLoc () {
       position: google.maps.ControlPosition.TOP_CENTER,
       drawingModes: ['marker']
     },
+    markerOptions: {draggable:true}
   });
 
   google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
-    var marker_position = marker.getPosition();
-    /* form handler TODO */
+    map_marker = marker;
+    map_markerpos = marker.getPosition();
+    marker.setDraggable(true);
+    drawingManager.setMap(null);
   });
+
+  google.maps.event.addListener(drawingManager, 'dragend', function(event) {
+      map_markerpos = map_marker.getPosition();
+  })
+
   drawingManager.setMap(map_loc);
 }
+
+/* Map Interface - get current set new pin position */
+function map_getNewPin () {
+  return {
+    lat: map_markerpos.lat (),
+    lng: map_markerpos.lng ()
+  }
+}
+
+/* Map Interface - reset current new pin info */
+function map_resetNewPin () {
+  map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
+}
+
