@@ -55,23 +55,27 @@ function loadCards(id) {
     data = snapshot.val()
     for (key in data) {
       let imgsrc = "assets/communitygarden.jpg"
+      console.log("what is the key", key)
       firebase.storage().ref(key).getDownloadURL().then(function(url) {
+        console.log("do i get here")
         imgsrc = url
+        console.log("if so, src is", imgsrc)
         console.log(url)
       }).catch(function(error) {
         // Handle any errors
         console.log("error")
-        imgsrc = "assets/communitygarden.jpg"
+        //imgsrc = "assets/communitygarden.jpg"
+      }).then(() => {
+        document.querySelector("#cardListings").innerHTML +=
+          `<div class="card m-3 d-flex justify-content-around" style="width:300px">
+          <img class="card-img-top" src="${imgsrc}" alt="Card image">
+          <div class="card-body">
+          <h4 class="card-title">${data[key].title}</h4>
+          <p class="card-text">${data[key].desc}</p>
+          <a href="project.html?id=${key}" class="btn btn-primary">More Info</a>
+          </div>
+          </div>`
       })
-      document.querySelector("#cardListings").innerHTML +=
-        `<div class="card m-3 d-flex justify-content-around" style="width:300px">
-        <img class="card-img-top" src="${imgsrc}" alt="Card image">
-        <div class="card-body">
-        <h4 class="card-title">${data[key].title}</h4>
-        <p class="card-text">${data[key].desc}</p>
-        <a href="project.html?id=${key}" class="btn btn-primary">More Info</a>
-        </div>
-        </div>`
     }
   })
 }
