@@ -110,14 +110,25 @@ function map_initMapLoc () {
     map_markerpos = marker.getPosition();
     marker.setDraggable(true);
     drawingManager.setMap(null);
-    /* form handler TODO */
   });
-  
+
   google.maps.event.addListener(drawingManager, 'dragend', function(event) {
       map_markerpos = map_marker.getPosition();
   })
 
-  
-  
   drawingManager.setMap(map_loc);
 }
+
+/* Map Interface - get current set new pin position */
+function map_getNewPin () {
+  return {
+    lat: map_markerpos.lat (),
+    lng: map_markerpos.lng ()
+  }
+}
+
+/* Map Interface - reset current new pin info */
+function map_resetNewPin () {
+  map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
+}
+
