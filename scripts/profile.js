@@ -89,9 +89,10 @@ function displayError() {
 //   })
 // }
 
-function loadCards() {
+function loadCards(id) {
   let num = 1;
-  firebase.database().ref("/posts").on('value', function(snapshot) {
+  console.log(id)
+  firebase.database().ref(`/user-posts/${id}`).on('value', function(snapshot) {
     data = snapshot.val()
     for (key in data) {
       if (!data[key].done) {
