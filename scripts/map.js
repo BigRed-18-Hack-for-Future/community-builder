@@ -57,8 +57,11 @@ function displayMap (map_markers){
     google.maps.event.addListener (pin, 'click', (function (pin, data, infoWindow) {
       return function () {
         map_closeWindows ()
-        infoWindow.setContent ('<div style="padding-bottom: 10px ; font-size:140%">'
-                               + '<b>' + data.title + '</b>' + '</div>'  + '<div>' + data.desc + '</div>')
+        var contentString = '<div><div style="padding-bottom: 10px; font-size: 140%"><b>' +
+          data.title + '</b></div>' +
+          data.desc + '&nbsp;' +
+          '<a href="' + data.url + '">See more.</a></div>'
+        infoWindow.setContent (contentString)
         infoWindow.open (map_main, pin)
         map_windows [0] = infoWindow
       }})(pin, markerData, infoWindow))
@@ -134,4 +137,3 @@ function map_getNewPin () {
 function map_resetNewPin () {
   map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 }
-
