@@ -21,12 +21,10 @@ function getParameterByName(name, url) {
 }
 
 function displayPage(id){
-  if(id == uid){
-    dispSelf(id)
-  }else{
-    dispOther(id)
-  }
+  dispOther(id)
 }
+
+
 
 function dispSelf(id){
   title = document.querySelector("title")
@@ -34,8 +32,25 @@ function dispSelf(id){
 
 }
 
-function dispOther(){
-
+function dispOther(id){
+  firebase.database().ref(`/user-info/${id}`).on('value', function(snapshot) {
+    data = snapshot.val()
+    console.log(data)
+    document.querySelector("#name").innerHTML = data.name
+    document.querySelector("#email").innerHTML = data.email
+    document.querySelector("#pic").setAttribute('src', data.photo)
+    title = document.querySelector("title")
+    title.innerHTML = data.name
+  })
+  firebase.storage().ref(id).getDownloadURL().then(function(url) {
+    // Or inserted into an <img> element:
+    var img = document.getElementById('cardimg')
+    img.src = url
+  }).catch(function(error) {
+    // Handle any errors
+    var img = document.getElementById('cardimg')
+    img.src = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg"
+  })
 }
 
 function displayError(){

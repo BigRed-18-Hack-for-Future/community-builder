@@ -3,7 +3,7 @@ var uid = loggedIn()
 
 
 window.setTimeout (function () {
-  console.log("WINDOW ON LOAD")
+  //console.log("WINDOW ON LOAD")
   loggedIn();
 }, 1000);
 
@@ -20,9 +20,8 @@ function loggedIn() {
   var logout = document.querySelector("#logout")
   var current = document.querySelector("#current")
 
-  console.log("called loggedIn")
   if (user) {
-    console.log("user is true")
+    //console.log("user is true")
     logbtn.style.display = 'none'
     logout.style.display = 'initial'
     current.style.display = 'initial'
@@ -31,11 +30,20 @@ function loggedIn() {
     auth = true
     uid = user.uid
     console.log(uid)
+    var updates = {}
+    console.log(user)
+    updates['/user-info/' + uid] = {
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL
+      }
+    console.log(firebase.database().ref('/').update(updates))
+    console.log("user",user)
     return user.uid;
   } else {
-    console.log("user is false")
-    console.log(logout)
-    console.log(current)
+    //console.log("user is false")
+    //console.log(logout)
+    //console.log(current)
     logout.style.display = 'none'
     current.style.display = 'none'
     logbtn.style.display = 'initial'
@@ -43,8 +51,6 @@ function loggedIn() {
     return "";
   }
 }
-
-loggedIn()
 
 // //if logged in show log out button
 // if(loggedIn()){
@@ -54,8 +60,8 @@ loggedIn()
 // }
 
 function getUserID() {
-  console.log("user")
-  console.log(firebase.auth().currentUser)
+  //console.log("user")
+  //console.log(firebase.auth().currentUser)
   return firebase.auth().currentUser.uid;
 }
 
@@ -67,16 +73,13 @@ login.addEventListener("click", e => {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    // ...
+
+    var newPostKey = firebase.database().ref().child('user-info').push().key;
   }).then(function(){ loggedIn()}).catch(function(error) {
-    // Handle Errors here.
     var errorCode = error.code
     var errorMessage = error.message
-    // The email of the user's account used.
     var email = error.email
-    // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential
-    // ...
   });
 })
 
@@ -84,7 +87,7 @@ let logout = document.querySelector("#logout")
 logout.addEventListener("click", e => {
   firebase.auth().signOut().then(function() {
     auth = false
-    console.log("logged out")
+    //console.log("logged out")
     // Sign-out successful.
   }).catch(function(error) {
     console.log(error)

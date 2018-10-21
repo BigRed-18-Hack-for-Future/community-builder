@@ -7,7 +7,7 @@ let submit = document.querySelector("#subform")
 console.log(submit)
 
 submit.addEventListener("click", e => {
-  if (loggedIn()) {
+  if (auth) {
     let title = document.querySelector("#title").value
     let desc = document.querySelector("#desc").value
     let lat = document.querySelector("#lat").value
