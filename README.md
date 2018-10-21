@@ -12,6 +12,12 @@ Bent not Broken is an online web application where users can create and post dis
 
 ## How we built it
 
+Our technology stack: Firebase + Google Maps + Bootstrap
+
+Firebase is how we store data of users and projects information.
+
+Google Maps API provides extensive visualization, integrated into all major functionality of the platform. A gigantic map view of ongoing local projects on the landing page, with pop-up info windows, is the best place to start reaching out. Associating location with a new project idea is as simple as placing and dragging a new map pin.
+
 ## Challenges we ran into
 
 ## Accomplishments that we're proud of
