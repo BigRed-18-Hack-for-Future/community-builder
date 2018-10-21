@@ -137,4 +137,3 @@ function map_getNewPin () {
 function map_resetNewPin () {
   map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 }
-
