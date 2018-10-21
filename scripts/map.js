@@ -9,9 +9,9 @@
 var map_main;
 var map_infoWindow;
 
-var map_centerLat = 42.4499
-var map_centerLng = -76.4818
-var map_initZoom = 16
+var map_centerLat = 18.4655
+var map_centerLng = -66.1057
+var map_initZoom = 12
 
 var map_windows = []
 var dispInfo
