@@ -27,3 +27,11 @@ Google Maps API provides extensive visualization, integrated into all major func
 ## What's next for Bent Not Broken
 
 We think this idea and it's framework are well established, but we're hoping to continue to make modifications and improvements by adding functionality to the web app, expanding the user network, and enhancing the application's visual appeal.
+
+### Roadmap
+
+- Extend tag system, match user skill sets with project needs.
+- Extend platform scale, enclose community unit, multiply usage across larger areas.
+- Improve authentication system, provide wider options, secure information hierarchy.
+- Package platform partial functionality into open-source libraries.
+- Experiment with communities in the real world!
