@@ -4,7 +4,7 @@ function loadCards() {
   firebase.database().ref("/posts").on('value', function(snapshot) {
     data = snapshot.val()
     for (key in data) {
-      if (!data[key].done) {
+      if (data[key].done) {
         let column = document.createElement("div")
         column.classList.add("col")
         let card = document.createElement("div")

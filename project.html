@@ -47,50 +47,52 @@
 
 
 
-<div class="container">
-  <div class="row pt-5">
-    <div class="col">
-    </div>
-    <div class="col-6">
-      <div class="card">
-      <img class="card-img-top" src="#" alt="Card image cap" id="cardimg"/>
-      <div class="card-body">
-        <h5 class="card-title" id="title">Card title</h5>
-        <p class="card-text" id="desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col">
       </div>
-      <ul class="list-group list-group-flush">
-        <!-- <li class="list-group-item">Cras justo odio</li>
+      <div class="col-6">
+        <div class="card">
+          <img class="card-img-top" src="#" alt="Card image cap" id="cardimg" />
+          <div class="card-body">
+            <h5 class="card-title" id="title">Card title</h5>
+            <p class="card-text" id="desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <!-- <li class="list-group-item">Cras justo odio</li>
         <li class="list-group-item">Dapibus ac facilisis in</li>
         <li class="list-group-item">Vestibulum at eros</li> -->
-      </ul>
-      <div class="card-body">
-        <a href="#" class="card-link" id="creator">Contact Creator</a>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link" id="creator">Contact Creator</a>
+          </div>
+
+          <div id="updateform" style="display:none">
+            <form>
+
+              <div class="form-group">
+                <label for="edittitle">Project Name</label>
+                <input type="text" class="form-control" id="edittitle" placeholder="Project Name" aria-describedby="edittitlehelp" />
+                <small id="edittitlehelp" class="form-text text-muted">Make sure your title is descriptive.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="editdesc">Project Description</label>
+                <textarea class="form-control" id="editdesc" placeholder="Project Name" aria-describedby="editdeschelp"></textarea>
+                <small id="editdeschelp" class="form-text text-muted">Be clear about what you need.</small>
+              </div>
+              <input type="checkbox" value="done" id="done" /> Done! <br/>
+
+            </form>
+            <button class="btn btn-info" id="update"> Update </button>
+          </div>
+
+        </div>
       </div>
-
-      <form>
-
-        <div class="form-group">
-          <label for="edittitle">Project Name</label>
-          <input type="text" class="form-control" id="edittitle" placeholder="Project Name" aria-describedby="edittitlehelp" />
-          <small id="edittitlehelp" class="form-text text-muted">Make sure your title is descriptive.</small>
-        </div>
-
-        <div class="form-group">
-          <label for="editdesc">Project Description</label>
-          <textarea class="form-control" id="editdesc" placeholder="Project Name" aria-describedby="editdeschelp"> </textarea>
-          <small id="editdeschelp" class="form-text text-muted">Be clear about what you need.</small>
-        </div>
-        <input type="checkbox" value="done" id="const" /> Done! <br/>
-
-      </form>
-      <button class="btn btn-info" id="update"> Update </button>
-
-    </div>
-    </div>
-    <div class="col">
+      <div class="col">
+      </div>
     </div>
   </div>
-</div>
 
 
   <!-- Firebase stuff -->
