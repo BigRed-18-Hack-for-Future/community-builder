@@ -1,4 +1,4 @@
-function getMapData(){
+/*function getMapData(){
   let dispInfo = {}
   firebase.database().ref('/posts').on('value', function(snapshot){
     data = snapshot.val()
@@ -19,3 +19,4 @@ function getMapData(){
   })
   return dispInfo
 }
+*/
