@@ -26,6 +26,7 @@ function displayPage(id){
     console.log(data)
     document.querySelector("#title").innerHTML = data.title
     document.querySelector("#desc").innerHTML = data.desc
+    document.querySelector("#creator").setAttribute('href', `profile.html?id=${data.creator}`)
   })
   firebase.storage().ref(id).getDownloadURL().then(function(url) {
     // Or inserted into an <img> element:
