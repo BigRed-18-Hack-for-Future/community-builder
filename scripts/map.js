@@ -88,7 +88,7 @@ function map_closeWindows () {
 /**************************** Form Page Second Map ****************************/
 
 var map_loc;
-var map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
+var map_markerpos
 var map_marker;
 
 function map_initMapLoc () {
@@ -140,15 +140,21 @@ function map_resetNewPin () {
 
 /************************** Project Display Map *****************************/
 
-var map_showProject = null
+function map_prepareProj () {
+  var projID = (String (window.location))
+    .match (/\?id=-[A-Z|a-z]+$/) [0]
+    .substring (4)
+  let dispInfo  = {}
+  firebase.database().ref(`/posts/${projID}`).on('value', function(snapshot) {
+    data = snapshot.val()
+    map_initMapProj (data)
+  })
+}
 
-function map_setShowProject (data) { map_showProject = data }
-
-function map_initMapProj () {
-  console.log ('creating project map...')
+function map_initMapProj (pin) {
   var loc = {
-    lat: map_showProject.lat,
-    lng: map_showProject.lng
+    lat: pin.lat,
+    lng: pin.long
   }
   var map = new google.maps.Map (document.getElementById ('proj-map-container'), {
     zoom: map_initZoom,
