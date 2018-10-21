@@ -9,9 +9,9 @@
 var map_main;
 var map_infoWindow;
 
-var map_centerLat = 42.4499
-var map_centerLng = -76.4818
-var map_initZoom = 16
+var map_centerLat = 18.4655
+var map_centerLng = -66.1057
+var map_initZoom = 12
 
 var map_windows = []
 var dispInfo
@@ -57,8 +57,11 @@ function displayMap (map_markers){
     google.maps.event.addListener (pin, 'click', (function (pin, data, infoWindow) {
       return function () {
         map_closeWindows ()
-        infoWindow.setContent ('<div style="padding-bottom: 10px ; font-size:140%">'
-                               + '<b>' + data.title + '</b>' + '</div>'  + '<div>' + data.desc + '</div>')
+        var contentString = '<div><div style="padding-bottom: 10px; font-size: 140%"><b>' +
+          data.title + '</b></div>' +
+          data.desc + '&nbsp;' +
+          '<a href="' + data.url + '">See more.</a></div>'
+        infoWindow.setContent (contentString)
         infoWindow.open (map_main, pin)
         map_windows [0] = infoWindow
       }})(pin, markerData, infoWindow))
@@ -85,7 +88,7 @@ function map_closeWindows () {
 /**************************** Form Page Second Map ****************************/
 
 var map_loc;
-var map_markerpos;
+var map_markerpos
 var map_marker;
 
 function map_initMapLoc () {
@@ -134,3 +137,29 @@ function map_getNewPin () {
 function map_resetNewPin () {
   map_markerpos = google.maps.LatLng ({ lat: 0, lng: 0 })
 }
+
+/************************** Project Display Map *****************************/
+
+function map_prepareProj () {
+  var projID = (String (window.location))
+    .match (/\?id=-[A-Z|a-z]+$/) [0]
+    .substring (4)
+  let dispInfo  = {}
+  firebase.database().ref(`/posts/${projID}`).on('value', function(snapshot) {
+    data = snapshot.val()
+    map_initMapProj (data)
+  })
+}
+
+function map_initMapProj (pin) {
+  var loc = {
+    lat: pin.lat,
+    lng: pin.long
+  }
+  var map = new google.maps.Map (document.getElementById ('proj-map-container'), {
+    zoom: map_initZoom,
+    center: loc
+  })
+  var marker = new google.maps.Marker ({ position: loc, map: map })
+}
+

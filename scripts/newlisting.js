@@ -10,9 +10,7 @@ submit.addEventListener("click", e => {
   if (uid) {
     let title = document.querySelector("#title").value
     let desc = document.querySelector("#desc").value
-    let con = document.querySelector("#const").checked
-    let coord = document.querySelector("#coord").checked
-    let other = document.querySelector("#other").checked
+    let tags = document.querySelector("#tag").value
     coords = map_getNewPin()
 
     let info = {
@@ -20,15 +18,11 @@ submit.addEventListener("click", e => {
       desc: desc,
       lat: coords.lat,
       long: coords.lng,
-      con: con,
-      coord: coord,
-      other: other,
+      tags: tags,
       done: false,
       creator: uid
     }
-
-
-        map_resetNewPin()
+    map_resetNewPin()
     console.log(info)
 
     // Get a key for a new Post.
