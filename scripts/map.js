@@ -64,7 +64,8 @@ function map_initMapMain () {
     google.maps.event.addListener (pin, 'click', (function (pin, data, infoWindow) {
       return function () {
         map_closeWindows ()
-        infoWindow.setContent ()
+        infoWindow.setContent ('<div style="padding-bottom: 10px ; font-size:140%">' 
+                               + '<b>' + data.title + '</b>' + '</div>'  + '<div>' + data.desc + '</div>')
         infoWindow.open (map_main, pin)
         map_windows [0] = infoWindow
       }})(pin, markerData, infoWindow))
@@ -114,6 +115,7 @@ function map_initMapLoc () {
   });
   
   google.maps.event.addListener(drawingManager, 'dragend', function(event) {
+      
       map_markerpos = map_marker.getPosition();
   })
 
