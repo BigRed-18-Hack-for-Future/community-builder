@@ -34,14 +34,13 @@ function map_initMapMain () {
         url: `project.html?id=${key}`
       }
     }
-    playMap(dispInfo)
+    displayMap(dispInfo)
   })
 }
 
-function playMap (map_markers){
+function displayMap (map_markers){
   var pins = []
   for (key in map_markers) {
-    console.log("key", key)
     if (!map_markers.hasOwnProperty (key)) continue
     markerData = map_markers [key]
     var pin = new google.maps.Marker ({
