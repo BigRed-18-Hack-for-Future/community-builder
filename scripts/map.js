@@ -14,25 +14,33 @@ var map_centerLng = -76.4818
 var map_initZoom = 16
 
 var map_windows = []
-
-var map_markers
+var dispInfo
 
 function map_initMapMain () {
-  map_markers = getMapData ();
-  console.log(map_markers, "map data")
-  map_main = new google.maps.Map (document.getElementById('main-map-container'), {
-    center: {
-      lat: map_centerLat,
-      lng: map_centerLng
-    },
-    zoom: map_initZoom
-  });
-  /* show markers */
+  dispInfo = {}
+  firebase.database().ref('/posts').on('value', function(snapshot){
+    data = snapshot.val()
+    for(key in data){
+      let short = data[key].desc
+      if(short.length > 60){
+        short = short.slice(0, 57)
+        short += "..."
+      }
+      dispInfo[key] = {
+        lat: data[key].lat,
+        lng: data[key].long,
+        title: data[key].title,
+        desc: short,
+        url: `project.html?id=${key}`
+      }
+    }
+    displayMap(dispInfo)
+  })
+}
+
+function displayMap (map_markers){
   var pins = []
-  console.log (map_markers)
-  console.log(typeof map_markers)
   for (key in map_markers) {
-    console.log ('traversing...');
     if (!map_markers.hasOwnProperty (key)) continue
     markerData = map_markers [key]
     var pin = new google.maps.Marker ({
@@ -55,6 +63,14 @@ function map_initMapMain () {
         map_windows [0] = infoWindow
       }})(pin, markerData, infoWindow))
   }
+  map_main = new google.maps.Map (document.getElementById('main-map-container'), {
+    center: {
+      lat: map_centerLat,
+      lng: map_centerLng
+    },
+    zoom: map_initZoom
+  });
+  /* show markers */
   var markerCluster = new MarkerClusterer (map_main, pins)
 }
 
